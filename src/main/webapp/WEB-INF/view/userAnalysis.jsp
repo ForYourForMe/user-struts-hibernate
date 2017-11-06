@@ -27,7 +27,7 @@
 				label: "创建用户数量",
 				borderColor : "rgba(54, 162, 235, 1)",
 				data : "${lineChartData.datas}".split(","),
-				fill : false
+				fill : false //线下面填充
 			}]
 	};
 	
@@ -53,7 +53,7 @@
 			data: lineChartData,
 			 options: {
 	                responsive: true,
-	                title : {
+	                title : {//设置标题
 						display: true,
 						text: '用户创建日期统计',
 						fontColor: '#000'
@@ -66,7 +66,7 @@
 	                    mode: 'nearest',
 	                    intersect: true
 	                },
-	                scales: {
+	                scales: {//设置横轴坐标
 	                    xAxes: [{
 	                        display: true,
 	                        scaleLabel: {
@@ -74,7 +74,7 @@
 	                            labelString: '创建日期'
 	                        }
 	                    }],
-	                    yAxes: [{
+	                    yAxes: [{//设置纵轴坐标
 	                        display: true,
 	                        scaleLabel: {
 	                            display: true,

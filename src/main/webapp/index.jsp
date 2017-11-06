@@ -66,7 +66,7 @@
 				$this=$(this);
 				ul.find("li").removeClass("navPanelActive");
 				$this.addClass("navPanelActive");
-				loadUserList();
+				$content.load("loadUserListPage");
 			});
 			
 			//加载用户新增页面
@@ -100,11 +100,6 @@
 			
 		});
 		
-		function loadUserList() {
-			$content.load("loadUserListPage?page.pageNumber=1", function () {
-				
-			});
-		}
 	</script>
 </body>
 </html>

@@ -23,7 +23,7 @@ public class PageService {
 	 * @param page
 	 * @return
 	 */
-	public void getPageDataByPage(Page page){
+	public void getPageDataByPage(Page page,String nameString){
 		if(page.getPageNumber()== 0){
 			page.setPageNumber(1);
 		}
@@ -31,7 +31,7 @@ public class PageService {
 		page.setNumberOfPage(10);
 		try {
 			//获取所有的记录数
-			page.setTotalUser(userDao.getTotalNumberOfUser());
+			page.setTotalUser(userDao.getTotalNumberOfUser(nameString));
 			//计算总的页数
 			int totalPage=page.getTotalUser()/page.getNumberOfPage();
 			page.setTotalPage(page.getTotalUser()%page.getNumberOfPage()==0?totalPage:totalPage+1);
@@ -39,7 +39,7 @@ public class PageService {
 			if(page.getPageNumber() * page.getNumberOfPage() > page.getTotalUser()){
 				page.setPageNumber(page.getTotalPage());
 			}
-			page.setUserList(userDao.getUserListByPage(page.getPageNumber(), page.getNumberOfPage()));
+			page.setUserList(userDao.getUserListByPage(page.getPageNumber(), page.getNumberOfPage(),nameString));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,7 +53,7 @@ public class PageService {
 		ChartData chartData=new ChartData();
 		chartData.setLabels("男,女");
 		int male=userDao.getNumberOfMale();
-		chartData.setDatas(male+","+(userDao.getTotalNumberOfUser()-male));
+		chartData.setDatas(male+","+(userDao.getTotalNumberOfUser(null)-male));
 		return chartData;
 	}
 	

@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="userListPanel">
+ 		
         <div class="queryUser">
             用户名称：
-            <input type="text" name="userName" class="input_200">
+           
+            <input type="text" name="nameString" value="${nameString}"  class="input_200">
             <button type="button" class="button_50">查询</button>
+            
         </div>
         <table class="userlist" cellspacing="0">
             <thead>
@@ -52,6 +55,12 @@
     			var userId=$this.parent().data("id");
     			$.dialog.confirm({content:"确定删除？",callback: "deleteUser("+userId+");"});
     		});
+    		
+    		/** 查询 **/
+    		$("#userListPanel").find(".queryUser").find("button").on("click",function(){
+    			var nameString = $("input[name='nameString']").val();
+    			$("#bottomPanel").find(".content-panel").load("loadUserListPage?nameString="+nameString);
+    		})
     		
     });
     

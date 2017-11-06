@@ -20,6 +20,8 @@ import com.qingshixun.service.PageService;
 public class UploaderPageAction {
 
 	private Page page;// 用户管理页面数据
+	
+	private static String nameString;//查询参数
 
 	private ChartData pieChartData;// 用户分析页面扇形图数据
 	
@@ -47,7 +49,8 @@ public class UploaderPageAction {
 	@Action(value = "loadUserListPage", results = {
 			@Result(name = "success", location = "/WEB-INF/view/userList.jsp") })
 	public String uploadUserListPage() {
-		pageService.getPageDataByPage(page);
+		pageService.getPageDataByPage(page,nameString);
+		System.out.println(nameString);
 		return "success";
 	}
 
@@ -86,5 +89,13 @@ public class UploaderPageAction {
 
 	public void setLineChartData(ChartData lineChartData) {
 		this.lineChartData = lineChartData;
+	}
+
+	public String getNameString() {
+		return nameString;
+	}
+
+	public void setNameString(String nameString) {
+		this.nameString = nameString;
 	}
 }
